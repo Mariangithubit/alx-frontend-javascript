@@ -1,23 +1,23 @@
+/**
+ * Create a function named cleanSet that returns a string of
+ *    all the set values that start with a specific string (startString).
+ * @set: (Set)
+ * @startString: (String).
+ * Return: String
+ */
+
 export default function cleanSet(set, startString) {
-  /* Create a function named cleanSet that returns a string of
-  all the set values that start with a specific string (startString).
-
-  It accepts two arguments: a set (Set) and a startString (String).
-
-  When a value starts with startString you only append the rest of the string.
-  The string contains all the values of the set separated by - */
-
   if (!(set instanceof Set)) return '';
   if (!startString || typeof startString !== 'string') return '';
   let str = '';
-  let first = 0;
+  let first = true;
+
   for (const element of set) {
-    if (element.localeCompare(startString) !== 0
-      && element.startsWith(startString)) {
-      if (first === 0) {
-        first = 1;
-      } else {
+    if (element.startsWith(startString)) {
+      if (!first) {
         str += '-';
+      } else {
+        first = false;
       }
       str += element.slice(startString.length);
     }
