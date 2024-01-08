@@ -14,7 +14,7 @@ export default function cleanSet(set, startString) {
   for (const element of set) {
     if (element.localeCompare(startString) !== 0
       && element.startsWith(startString)) {
-      if (!first) {
+      if (first === 0) {
         first = 1;
       } else {
         str += '-';
