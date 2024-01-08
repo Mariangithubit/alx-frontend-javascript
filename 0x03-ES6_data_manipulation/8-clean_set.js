@@ -7,20 +7,11 @@
  */
 
 export default function cleanSet(set, startString) {
-  if (!(set instanceof Set)) return '';
-  if (!startString || typeof startString !== 'string') return '';
-  let str = '';
-  let first = true;
-
-  for (const element of set) {
-    if (element.startsWith(startString)) {
-      if (!first) {
-        str += '-';
-      } else {
-        first = false;
-      }
-      str += element.slice(startString.length);
-    }
+  if (!set || !startString || !(set instanceof Set) || typeof startString !== 'string') {
+	  return '';
   }
-  return str;
+  return Array.from(set)
+    .filter((element) => element && element.startsWith(startString))
+    .map((element) => element.replace(startString, ''))
+    .join('-');
 }
